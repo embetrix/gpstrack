@@ -28,7 +28,11 @@ int main(int argc, char **argv)
 {
     FILE *fp;
     char line[MINMEA_MAX_LENGTH];
-
+    char time[40];
+    struct minmea_sentence_rmc frame;
+    struct timespec ts;
+    struct tm* ptm;
+    
     if (argc > 1)
         fp = fopen(argv[1], "r");
 
@@ -39,9 +43,13 @@ int main(int argc, char **argv)
 
     while (fgets(line, sizeof(line), fp) != NULL) {
         if (minmea_sentence_id(line, false) == MINMEA_SENTENCE_RMC){
-                struct minmea_sentence_rmc frame;
+                
                 if (minmea_parse_rmc(&frame, line)) {
-                    printf( "floating point degree coordinates and speed: (%f,%f) %f\n",
+                    minmea_gettime(&ts, &frame.date, &frame.time);
+                    ptm = localtime (&ts.tv_sec);
+                    strftime (time, sizeof (time), "%Y-%m-%d %H:%M:%S", ptm);
+                    printf( "Time: %s - Coordinates: (%f,%f) - Speed: %f\n", 
+                            time,
                             minmea_tocoord(&frame.latitude),
                             minmea_tocoord(&frame.longitude),
                             minmea_tofloat(&frame.speed));
