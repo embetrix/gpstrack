@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <title>GPS Track Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:100%;
+      }
+    </style>
+    <script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.1.0/eon.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.1.0/eon.css"/>
+  </head>
+  <body>
+    <div id='map'></div>
+    <script>
+    var pn = new PubNub({
+        publishKey:   'pub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // replace with your own pub-key
+        subscribeKey: 'sub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'  // replace with your own sub-key
+    });
+    var channel = 'gps-location';
+    var map = eon.map({
+        pubnub: pn,
+        id: 'map',
+        mbId: 'embexus.e57452ef',
+        mbToken: 'pk.eyJ1IjoiZW1iZXh1cyIsImEiOiJjajRiOXZ5NmIwOWNnMzNxcGZ5aTFvMmV6In0.9Cx5PSyhO_TDngSZPalxGA',
+        channels: [channel],
+
+        marker: function (latlng) {
+            return (new L.Marker(latlng));
+           }
+
+       });
+    </script>
+  </body>
+</html>
