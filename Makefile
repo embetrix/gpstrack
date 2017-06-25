@@ -31,7 +31,7 @@ clean:
 	$(RM) gpstrack *.o
 
 gpstrack: gpstrack.o minmea.o
-	$(CC) $(LDFLAGS) $< $(LIBS) -o $@
+	$(CC) $(LDFLAGS) $^ $(LIBS) -o $@
 
 minmea.o: minmea.c minmea.h
 	$(CC) $(CFLAGS) -c -o $@ $<
