@@ -31,7 +31,7 @@
 
 #include "minmea.h"
 
-#define DEBUG 0
+#define DEBUG 1
 #define debug(args ...) if (DEBUG) fprintf(stderr, args)
 #define STRINGIFY(...) #__VA_ARGS__
 
@@ -41,7 +41,7 @@
 #define CHANNEL "gps-location"
 #define TMOUT 10
 
-#define SPEED_MIN 1
+#define SPEED_MIN 0.1
 
 /* Knot to meter/s conversion*/
 #define KNT2MPS 0.51444444444
@@ -121,7 +121,6 @@ int main(int argc, char **argv)
         }
     }
     free(gps_json_string);
-    json_object_put(gps);
     pubnub_done(p);
     fclose(fp);
     return 0;
