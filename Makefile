@@ -21,7 +21,7 @@
 CFLAGS  = -Wall -Wextra -Werror -std=c99
 CFLAGS += -D_POSIX_C_SOURCE=199309L -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_DARWIN_C_SOURCE
 CFLAGS += `pkg-config --cflags libpubnub json-c libcurl libcrypto libssl libevent`
-LIBS   += `pkg-config --libs libpubnub json-c libcurl libcrypto libssl libevent`
+LIBS   += -lpubnub -ljson-c -lcurl -lcrypto -lssl -levent
 
 all:  gpstrack
 
