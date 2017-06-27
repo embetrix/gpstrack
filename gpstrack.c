@@ -38,6 +38,7 @@
 #define PUBKEY "pub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 #define SUBKEY "sub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
+
 #define CHANNEL "gps-location"
 #define TMOUT 10
 
@@ -106,7 +107,7 @@ int main(int argc, char **argv)
                              speed, 
                              time);
 
-                    gps = json_tokener_parse_verbose(gps_json_string, &error);
+                    gps = json_tokener_parse(gps_json_string);
 
                     /*printing the json object*/
                     debug("gps json: %s\n",json_object_to_json_string(gps));
