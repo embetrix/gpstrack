@@ -38,7 +38,6 @@
 #define PUBKEY "pub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 #define SUBKEY "sub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-
 #define CHANNEL "gps-location"
 #define TMOUT 10
 
@@ -59,7 +58,6 @@ int main(int argc, char **argv)
     float speed = 0.0;
     char *gps_json_string = NULL;
     json_object *gps;  
-    enum json_tokener_error error = json_tokener_success;
 
     static const char* const gps_data = STRINGIFY(
     [
