@@ -31,14 +31,16 @@
 #include "minmea.h"
 #include "gpstrack.h"
 
-void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, json_object *data, float minspeed) 
+void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, 
+                      json_object *data, float minspeed) 
 {
     int index=0;
     struct json_object* tmpobj;
     float speed = 0.0;
 
     /*extract speed key from json data*/
-    if (json_object_object_get_ex(json_object_array_get_idx(data,index), "speed", &tmpobj)) {
+    if (json_object_object_get_ex(json_object_array_get_idx(data,index), 
+                                  "speed", &tmpobj)) {
         speed = json_object_get_double(tmpobj);
         /*publish only if taget moving*/
         if (speed > minspeed) {
@@ -88,11 +90,12 @@ int main(int argc, char **argv)
     }
 
     struct pubnub_sync *sync = pubnub_sync_init();
-    struct pubnub *pubnb = pubnub_init(PUBKEY, SUBKEY, &pubnub_sync_callbacks, sync);
+    struct pubnub *pubnb = pubnub_init(PUBKEY, SUBKEY, 
+                                       &pubnub_sync_callbacks, sync);
 
     /*parse only RMC sentences*/	
     while (fgets(line, sizeof(line), fp) != NULL) {
-        if (minmea_sentence_id(line, false) == MINMEA_SENTENCE_RMC){
+        if (minmea_sentence_id(line, false) == MINMEA_SENTENCE_RMC) {
 
                 if (minmea_parse_rmc(&frame, line)) {
                     minmea_gettime(&ts, &frame.date, &frame.time);
