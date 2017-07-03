@@ -1,6 +1,6 @@
 # (C) Copyright 2017
 #
-# Ayoub Zaki, Embexus Embedded Systems Solutions, ayoub.zaki@embexus.com
+# Embexus Embedded Systems Solutions, ayoub.zaki@embexus.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -19,7 +19,7 @@
 #
 
 CFLAGS  = -Wall -Wextra -Werror -std=c99
-CFLAGS += -D_POSIX_C_SOURCE=199309L -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_DARWIN_C_SOURCE
+CFLAGS += -D_POSIX_C_SOURCE=199309L -D_GNU_SOURCE -D_BSD_SOURCE -D_DEFAULT_SOURCE -D_DARWIN_C_SOURCE
 CFLAGS += `pkg-config --cflags json-c`
 LIBS   += -lpubnub -ljson-c -lcurl -lcrypto -lssl -levent
 

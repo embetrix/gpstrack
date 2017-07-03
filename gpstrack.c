@@ -1,6 +1,6 @@
 /*
  * (C) Copyright 2017
- * Ayoub Zaki, Embexus Embedded Systems Solutions, ayoub.zaki@embexus.com
+ * Embexus Embedded Systems Solutions, ayoub.zaki@embexus.com
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,7 +18,6 @@
  * MA 02111-1307 USA
  */
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,21 +29,25 @@
 #include <pubnub-sync.h>
 
 #include "minmea.h"
+#include "gpstrack.h"
 
-#define DEBUG 1
-#define debug(args ...) if (DEBUG) fprintf(stderr, args)
-#define STRINGIFY(...) #__VA_ARGS__
 
-#define PUBKEY "pub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-#define SUBKEY "sub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, json_object *data, float minspeed) {
 
-#define CHANNEL "gps-location"
-#define TMOUT 10
+    struct json_object* tmpobj;
+    float speed = 0.0;
 
-#define SPEED_MIN 0.1
-
-/* Knot to meter/s conversion*/
-#define KNT2MPS 0.51444444444
+    /*extract speed key from json data*/
+    if (json_object_object_get_ex(json_object_array_get_idx(data,0), "speed", &tmpobj)) {
+        speed = json_object_get_double(tmpobj);
+        /*publish only if taget moving*/
+        if (speed > minspeed) {
+            pubnub_publish(p,CHANNEL,data,TMOUT,NULL,NULL);
+            if (pubnub_sync_last_result(s) != PNR_OK)
+                printf("pubnub publish error!\n");
+        }   
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -85,7 +88,7 @@ int main(int argc, char **argv)
     }
 
     struct pubnub_sync *sync = pubnub_sync_init();
-    struct pubnub *p = pubnub_init(PUBKEY, SUBKEY, &pubnub_sync_callbacks, sync);
+    struct pubnub *pubnb = pubnub_init(PUBKEY, SUBKEY, &pubnub_sync_callbacks, sync);
 
     /*parse only RMC sentences*/	
     while (fgets(line, sizeof(line), fp) != NULL) {
@@ -98,7 +101,8 @@ int main(int argc, char **argv)
 
                     /*convert speed from knot to mps*/
                     speed = KNT2MPS*minmea_tofloat(&frame.speed);
-
+                    
+                    /*format json string*/
                     asprintf(&gps_json_string, gps_data, 
                              minmea_tocoord(&frame.latitude), 
                              minmea_tocoord(&frame.longitude), 
@@ -106,21 +110,14 @@ int main(int argc, char **argv)
                              time);
 
                     gps = json_tokener_parse(gps_json_string);
-
                     /*printing the json object*/
-                    debug("gps json: %s\n",json_object_to_json_string(gps));
-
-                    /*publish only if taget moving*/
-                    if (speed > SPEED_MIN) {
-                        pubnub_publish(p,CHANNEL,gps,TMOUT,NULL,NULL);
-	                if (pubnub_sync_last_result(sync) != PNR_OK)
-	                    printf("pubnub publish error!\n");
-                   }
+                    debug("json: %s\n",json_object_to_json_string(gps));
+                    publish_gps_data(sync, pubnb, gps, SPEED_MIN);
                 }
         }
     }
     free(gps_json_string);
-    pubnub_done(p);
+    pubnub_done(pubnb);
     fclose(fp);
     return 0;
 }
