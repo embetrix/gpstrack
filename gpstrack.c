@@ -32,12 +32,12 @@
 #include "gpstrack.h"
 
 
-void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, json_object *data, double minspeed) {
+void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, json_object *data, float minspeed) {
 
     struct json_object* tmpobj;
     float speed = 0.0;
 
-    /*extract speed key from json*/
+    /*extract speed key from json data*/
     if (json_object_object_get_ex(json_object_array_get_idx(data,0), "speed", &tmpobj)) {
         speed = json_object_get_double(tmpobj);
         /*publish only if taget moving*/
