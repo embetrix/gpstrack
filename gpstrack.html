@@ -24,21 +24,27 @@
     <script>
     var pn = new PubNub({
         publishKey:   'pub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // replace with your own pub-key
-        subscribeKey: 'sub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'  // replace with your own sub-key
-    });
+        subscribeKey: 'sub-c-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',  // replace with your own sub-key
+        ssl : true   
+});
     var channel = 'gps-location';
+    var point = { latlng: [ 48.912365, 9.178066]};
     var map = eon.map({
         pubnub: pn,
         id: 'map',
-        mbId: 'embexus.e57452ef',
+        mbId: 'mapbox.streets',
         mbToken: 'pk.eyJ1IjoiZW1iZXh1cyIsImEiOiJjajRiOXZ5NmIwOWNnMzNxcGZ5aTFvMmV6In0.9Cx5PSyhO_TDngSZPalxGA',
         channels: [channel],
-
+        history: true,
+        message: function (data) {
+            map.setView(data[0].latlng); //the zoom level
+        },
         marker: function (latlng) {
             return (new L.Marker(latlng));
-           }
+        }
 
        });
     </script>
   </body>
 </html>
+
