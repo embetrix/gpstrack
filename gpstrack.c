@@ -31,8 +31,8 @@
 #include "minmea.h"
 #include "gpstrack.h"
 
-void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, json_object *data, float minspeed) {
-
+void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, json_object *data, float minspeed) 
+{
     int index=0;
     struct json_object* tmpobj;
     float speed = 0.0;
