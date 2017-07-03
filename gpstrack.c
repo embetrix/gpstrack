@@ -31,14 +31,14 @@
 #include "minmea.h"
 #include "gpstrack.h"
 
-
 void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, json_object *data, float minspeed) {
 
+    int index=0;
     struct json_object* tmpobj;
     float speed = 0.0;
 
     /*extract speed key from json data*/
-    if (json_object_object_get_ex(json_object_array_get_idx(data,0), "speed", &tmpobj)) {
+    if (json_object_object_get_ex(json_object_array_get_idx(data,index), "speed", &tmpobj)) {
         speed = json_object_get_double(tmpobj);
         /*publish only if taget moving*/
         if (speed > minspeed) {
