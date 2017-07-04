@@ -1,12 +1,12 @@
 # gpstrack
 
 [gpstrack](http://github.com/embexus/gpstrack) is a geo-localization application written in C intended for Embedded-Linux platforms 
-extended with a GPS module or dongle.
+with a GPS module or dongle.
 
 gpstrack uses [minmnea](https://github.com/cloudyourcar/minmea) library for parsing GPS/NMEA sentences. 
-GPS information (position, speed, time) is parsed, formated as JSON data and streamed in real-time to [PubNub](https://www.pubnub.com) cloud.
+GPS information (position, speed, time) are formated as JSON data and streamed in real-time to [PubNub](https://www.pubnub.com) cloud.
 
-![](https://embexus.com/gps/gpstrack5Gcx.gif)
+![](https://embexus.com/gps/gpstrackA3bC3e.gif)
 
 ## Dependencies
 
@@ -53,7 +53,7 @@ GPS Module or Dongle need to be connected to your device over Serial or USB to g
 
     $ ./gpstrack /dev/ttyACM0
 
-If you don't have a GPS device you can simulate it by inputing the [test.nmea](https://github.com/embexus/gpstrack/blob/master/test.nmea.gz) data file
+If you don't have a GPS device you can fake it by inputing the [test.nmea](https://github.com/embexus/gpstrack/blob/master/test.nmea.gz) data file
 
     $ gzip -dc test.nmea.gz > test.nmea
     $ ./gpstrack test.nmea
