@@ -8,11 +8,11 @@ GPS data (position, speed, time) is parsed, formated as JSON and streamed in rea
 
 # Dependencies
 
- [PubNub C SDK](https://github.com/embexus/pubnub-c-sdk)
- libjson-c
- libcurl
- libcrypto
- libevent
+ ##[PubNub C SDK](https://github.com/embexus/pubnub-c-sdk)
+ ##libjson-c
+ ##libcurl
+ ##libcrypto
+ ##libevent
 
 * install dependencies on Ubuntu host:
 
@@ -35,11 +35,11 @@ create an application and add a channel to be used to stream the GPS data feed.
         $ make 
         $ sudo make install
 
-* clone [gpstrack.h](http://github.com/embexus/gpstrack/gpstrack.h) repository:
+* clone [gpstrack](http://github.com/embexus/gpstrack) repository:
 
         $ git clone https://github.com/embexus/gpstrack.git
 
-* change [gpstrack.h](http://github.com/embexus/gpstrack/gpstrack.h) to input PubNub Channel, Publish Key and Subscribe Key information.
+* change [gpstrack.h](https://github.com/embexus/gpstrack/blob/master/gpstrack.h) to input PubNub Channel, Publish Key and Subscribe Key information.
 
 * build [gpstrack](http://github.com/embexus/gpstrack) :
 
