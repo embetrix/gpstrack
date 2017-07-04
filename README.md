@@ -6,7 +6,7 @@ extended with a GPS module or dongle.
 gpstrack uses [minmnea](https://github.com/cloudyourcar/minmea) library for parsing GPS/NMEA sentences. 
 GPS information (position, speed, time) is parsed, formated as JSON data and streamed in real-time to [PubNub](https://www.pubnub.com) cloud.
 
-![](http://imgur.com/TKJZ1iT)
+![](http://imgur.com/a/Gi0fz)
 
 ## Dependencies
 
