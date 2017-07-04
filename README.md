@@ -1,4 +1,4 @@
-# Gpstrack
+# gpstrack
 
 [gpstrack](http://github.com/embexus/gpstrack) is a geo-localization application written in C intended for Embedded-Linux platforms 
 extended with a GPS module or dongle.
@@ -6,7 +6,7 @@ extended with a GPS module or dongle.
 gpstrack uses [minmnea](https://github.com/cloudyourcar/minmea) library for parsing GPS/NMEA sentences. 
 GPS information (position, speed, time) is parsed, formated as JSON data and streamed in real-time to [PubNub](https://www.pubnub.com) cloud.
 
-# Dependencies
+## Dependencies
 
  * [PubNub C SDK](https://github.com/embexus/pubnub-c-sdk)
  * libjson-c
@@ -18,7 +18,7 @@ install dependencies on Ubuntu host:
 
         $ sudo apt-get install libjson-c-dev libcurl4-openssl-dev libevent-dev
 
-# PubNub/MapBox accounts
+## PubNub/MapBox accounts
 
 To be able to upload data on [PubNub](https://www.pubnub.com) cloud you need to have an account, 
 create an application and add a channel to be used to stream the GPS data feed.
@@ -26,7 +26,7 @@ create an application and add a channel to be used to stream the GPS data feed.
 [Mapbox](https://www.mapbox.com/) account is also required for Map Live visualization.
 
 
-# Build
+## Build
 
 build and install first [PubNub C SDK](https://github.com/embexus/pubnub-c-sdk):
 
@@ -45,7 +45,7 @@ build [gpstrack](http://github.com/embexus/gpstrack) :
 
         $ make
 
-# Usage
+## Usage
 
 GPS Module or Dongle need to be connected to your device over Serial or USB to get GPS data:
 
@@ -56,7 +56,7 @@ If you don't have a GPS device you can simulate it by inputing the [test.nmea](h
         $ gzip -dc test.nmea.gz > test.nmea
         $ ./gpstrack test.nmea
 
-# Map Liveview
+## Map Liveview
 
 [EON real-time map dashboard](https://www.pubnub.com/developers/eon/) is used to visualize the position on the map in realtime.
 To use change [gpstrack.html](https://github.com/embexus/gpstrack/blob/master/gpstrack.html) to input:
@@ -67,6 +67,6 @@ To use change [gpstrack.html](https://github.com/embexus/gpstrack/blob/master/gp
 
 Finally you can then open the html file locally with a browser or upload it to a webserver.
 
-# Licensing
+## Licensing
 
 This software is licensed under GPL Version 2.0+
