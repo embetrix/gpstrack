@@ -41,9 +41,9 @@ clone [gpstrack](http://github.com/embexus/gpstrack) repository:
 
     $ git clone https://github.com/embexus/gpstrack.git
 
-change [gpstrack.h](https://github.com/embexus/gpstrack/blob/master/gpstrack.h) to input PubNub Channel, Publish Key and Subscribe Key information.
+change PubNub Channel, Publish Key and Subscribe Key in [gpstrack.h](https://github.com/embexus/gpstrack/blob/master/gpstrack.h)
 
-build [gpstrack](http://github.com/embexus/gpstrack) :
+build it:
 
     $ make
 
@@ -53,7 +53,7 @@ GPS Module or Dongle need to be connected to your device over Serial or USB to g
 
     $ ./gpstrack /dev/ttyACM0
 
-If you don't have a GPS device you can fake it by inputing the [test.nmea](https://github.com/embexus/gpstrack/blob/master/test.nmea.gz) data file
+If you don't have a GPS device you can fake it by using [test.nmea](https://github.com/embexus/gpstrack/blob/master/test.nmea.gz) data file
 
     $ gzip -dc test.nmea.gz > test.nmea
     $ ./gpstrack test.nmea
