@@ -18,7 +18,7 @@ GPS information (position, speed, time) is parsed, formated as JSON data and str
 
 install dependencies on Ubuntu host:
 
-        $ sudo apt-get install libjson-c-dev libcurl4-openssl-dev libevent-dev
+    $ sudo apt-get install libjson-c-dev libcurl4-openssl-dev libevent-dev
 
 ## PubNub/MapBox accounts
 
@@ -32,31 +32,31 @@ create an application and add a channel to be used to stream the GPS data feed.
 
 build and install first [PubNub C SDK](https://github.com/embexus/pubnub-c-sdk):
 
-        $ git clone https://github.com/embexus/pubnub-c-sdk.git
-        $ cd pubnub-c-sdk 
-        $ make 
-        $ sudo make install
+    $ git clone https://github.com/embexus/pubnub-c-sdk.git
+    $ cd pubnub-c-sdk 
+    $ make 
+    $ sudo make install
 
 clone [gpstrack](http://github.com/embexus/gpstrack) repository:
 
-        $ git clone https://github.com/embexus/gpstrack.git
+    $ git clone https://github.com/embexus/gpstrack.git
 
 change [gpstrack.h](https://github.com/embexus/gpstrack/blob/master/gpstrack.h) to input PubNub Channel, Publish Key and Subscribe Key information.
 
 build [gpstrack](http://github.com/embexus/gpstrack) :
 
-        $ make
+    $ make
 
 ## Usage
 
 GPS Module or Dongle need to be connected to your device over Serial or USB to get GPS data:
 
-        $ ./gpstrack /dev/ttyACM0
+    $ ./gpstrack /dev/ttyACM0
 
 If you don't have a GPS device you can simulate it by inputing the [test.nmea](https://github.com/embexus/gpstrack/blob/master/test.nmea.gz) data file
 
-        $ gzip -dc test.nmea.gz > test.nmea
-        $ ./gpstrack test.nmea
+    $ gzip -dc test.nmea.gz > test.nmea
+    $ ./gpstrack test.nmea
 
 ## Map live view
 
