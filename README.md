@@ -58,7 +58,7 @@ If you don't have a GPS device you can simulate it by inputing the [test.nmea](h
         $ gzip -dc test.nmea.gz > test.nmea
         $ ./gpstrack test.nmea
 
-## Map Liveview
+## Map live view
 
 [EON real-time map dashboard](https://www.pubnub.com/developers/eon/) is used to visualize the position on the map in realtime.
 To use change [gpstrack.html](https://github.com/embexus/gpstrack/blob/master/gpstrack.html) to input:
