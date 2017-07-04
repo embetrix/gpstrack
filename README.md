@@ -1,6 +1,6 @@
 # Gpstrack
 
-[gpstrack](http://github.com/embexus/gpstrack) is a geo-localization application written in C intended for Embedded-Linux plaftforms 
+[gpstrack](http://github.com/embexus/gpstrack) is a geo-localization application written in C intended for Embedded-Linux platforms 
 extended with a GPS module or dongle.
 
 gpstrack uses [minmnea](https://github.com/cloudyourcar/minmea) library for parsing GPS/NMEA sentences. 
