@@ -23,7 +23,7 @@ install dependencies on Ubuntu host:
 To be able to upload data on [PubNub](https://www.pubnub.com) cloud you need to have an account, 
 create an application and add a channel to be used to stream the GPS data feed.
 
-[Mapbox](https://www.mapbox.com/) account is also needed for Map Live visualization.
+[Mapbox](https://www.mapbox.com/) account is also required for Map Live visualization.
 
 
 # Build
@@ -59,13 +59,13 @@ If you don't have a GPS device you can simulate it by inputing the [test.nmea](h
 # Map Liveview
 
 [EON real-time map dashboard](https://www.pubnub.com/developers/eon/) is used to visualize the position on the map in realtime.
-To use change [gpstrack.html] https://github.com/embexus/gpstrack/blob/master/gpstrack.html) to input:
+To use change [gpstrack.html](https://github.com/embexus/gpstrack/blob/master/gpstrack.html) to input:
    
  * PubNub subcription key
  * PubNub Channel
  * MapBox Id
 
-You can then open the html file locally with a browser or upload it to a webserver.
+Finally you can then open the html file locally with a browser or upload it to a webserver.
 
 # Licensing
 
