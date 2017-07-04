@@ -8,11 +8,11 @@ GPS data (position, speed, time) is parsed, formated as JSON and streamed in rea
 
 # Dependencies
 
- ##[PubNub C SDK](https://github.com/embexus/pubnub-c-sdk)
- ##libjson-c
- ##libcurl
- ##libcrypto
- ##libevent
+ *[PubNub C SDK](https://github.com/embexus/pubnub-c-sdk)
+ *libjson-c
+ *libcurl
+ *libcrypto
+ *libevent
 
 * install dependencies on Ubuntu host:
 
