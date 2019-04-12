@@ -34,4 +34,4 @@
 /* Knot to meter/s conversion*/
 #define KNT2MPS 0.51444444444
 
-void publish_gps_data(struct pubnub_sync *s, struct pubnub *p, json_object *data, float minspeed);
+
