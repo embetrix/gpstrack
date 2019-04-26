@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
-#include <json.h>
+
 
 #include "minmea.h"
 #include "gpstrack.h"
@@ -42,7 +42,6 @@ int main(int argc, char **argv)
     struct tm* ptm;
     float speed = 0.0;
     char *gps_json_string = NULL;
-    json_object *gps;  
 
     static const char* const gps_data = STRINGIFY(
     [
@@ -88,9 +87,8 @@ int main(int argc, char **argv)
                              speed, 
                              time);
 
-                    gps = json_tokener_parse(gps_json_string);
                     /*printing the json object*/
-                    debug("json: %s\n",json_object_to_json_string(gps));
+                    debug("json: %s\n",gps_json_string);
                 }
         }
     }
